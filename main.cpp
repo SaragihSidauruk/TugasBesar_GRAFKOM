@@ -8,7 +8,7 @@
 float sumbux=0.0, sumbuy=0.0, sumbuz=0.0;
 float sudut=0.0f;
 float vektorx=0.0f, vektorz=-1.0f;
-float x=0.0f, z=5.00f;
+float x=0.0f, z=7.00f;
 float pindahx =0.0, pindahy=0.0, pindahz=0.0;
 float xpos = 0, ypos = 1.2, zpos = -2.0, xrot = 7, yrot = 0, putary=0, angle=0.0; //Rotasi Sudut
 float inner, outer; int garisv,garish; //Variabel Torus
@@ -254,6 +254,24 @@ void display (void)
      
      glPopMatrix();
      
+     
+     //DONAT-DONAT
+    for(int i=0; i<=34; i++)
+     {
+
+     glEnable(GL_LIGHTING);
+     glEnable(GL_LIGHT0);
+     glPushMatrix();
+     glColor3f(1.2,1.6,0.1);
+     glTranslatef(-0.79,-0.9+(i/10.0)*0.5,-1.38);
+     glScalef(0.17,0.17,0.17);
+     glRotatef(90.0,1.0,0.0,0.0);
+     torussolid(0.1,0.3,50,50);
+     glDisable(GL_LIGHTING);
+     glDisable(GL_LIGHT0);
+     glPopMatrix();
+     }
+     
      //GEDUNG 5
      glPushMatrix();
      glEnable(GL_LIGHTING);
@@ -293,50 +311,58 @@ void display (void)
      glDisable(GL_LIGHT0);
      glPopMatrix();
 
-
      //GEDUNG 5.2
-/*   glPushMatrix();
+     glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(0.2,0.3,1.1);
-     glTranslatef(-0.36,2.28,-1.79);
-     glRotatef(-90.0,90.0,0.0,0.0);
-     glScalef(1.5,1.5,1.5);
-     kubussolid();
+     glColor3f(1.2,1.3,1.1);
+     glTranslatef(-0.36,1.58,-1.79);
+     //glTranslatef(pindahx,pindahy,pindahz);
+     glScalef(1.8,1.8,1.8);
+     kubussolid();         
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
-     glPopMatrix();    
-*/
-
-     //KOTAK ANU PANGLUHURNA LAH !
-     glPushMatrix();
-     glColor3f(0.63,0.89,1.1);
-     glTranslatef(-0.36,2.70,-1.75);
-     glRotatef(0.0,0.0,0.0,0.0);
-     glScalef(1.5,2.28,0.70);
-     kubussolid();
      glPopMatrix();
      
-     //KUBUS BEUREUM JIGANA 
+     //KUBUS PANGLUHURNA
      glPushMatrix();
-     glTranslatef(-0.36,1.93,-1.79);
-     glScalef(1.8,0.62,1.30);
-     glColor3f(0.59,0.41,0.31);
-     kubussolid();
+     glEnable(GL_LIGHTING);
+     glEnable(GL_LIGHT0);
+     glColor3f(1.2,1.3,1.1);
+     glTranslatef(-0.36,2.5,-1.79);
+     //glTranslatef(pindahx,pindahy,pindahz);
+     glScalef(1.2,0.9,1.2);
+     kubussolid();         
+     glDisable(GL_LIGHTING);
+     glDisable(GL_LIGHT0);
      glPopMatrix();
-
-      //OBOR
-     //glPushMatrix();
-     //glEnable(GL_LIGHTING);
-     //glEnable(GL_LIGHT0);
-     //glColor3f(1.0,0.56,0.45);
-     //glTranslatef(-0.36,2.09,-1.78);
-     //glRotatef(-95.0,60.0,0.0,0.0);
-     //cone(0.45,1.02,4,4);
-     //glDisable(GL_LIGHTING);
-     //glDisable(GL_LIGHT0);
-     //glPopMatrix();
      
+     //LIMAS
+     glPushMatrix();
+     glEnable(GL_LIGHTING);
+     glEnable(GL_LIGHT0);
+     glTranslatef(-0.36,2.03,-1.79);
+     glRotatef(45.0,0.0,1.0,0.0);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.2,0.3,1.1);
+     cone(0.60,0.86,4,2);
+     glDisable(GL_LIGHTING);
+     glDisable(GL_LIGHT0);
+     glPopMatrix();
+          
+     //LIMAS ANU LUHUR
+     glPushMatrix();
+     glEnable(GL_LIGHTING);
+     glEnable(GL_LIGHT0);
+     glTranslatef(-0.36,2.72,-1.79);
+     glRotatef(45.0,0.0,1.0,0.0);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.2,0.3,1.1);
+     cone(0.43,0.86,4,2);
+     glDisable(GL_LIGHTING);
+     glDisable(GL_LIGHT0);
+     glPopMatrix();
+          
      //JAM BIGBANG
      glPushMatrix();
      glColor3f(0.9,0.9,0.9);
@@ -353,7 +379,7 @@ void display (void)
      glPopMatrix();
      //JAM
      
-     //AKHIR JAM BIGBANG
+     //AKHIR JAM BIGBEN
      glPushMatrix();
      glTranslatef(0.8,-0.8,1.3);
      glPushMatrix();
@@ -652,3 +678,5 @@ int main(int argc, char **argv)
     glutMainLoop();
     return 0;
 }
+
+
