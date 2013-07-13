@@ -269,14 +269,33 @@ void display (void)
   
  //TANAH
      glPushMatrix();
-     glColor3f(0.4,0.6,0.2);
-     glTranslatef(0.0,-1.32,-1);
-     glScalef(25.0,0.05,20.0); 
+     glColor3f(0.0,0.0,0.0);
+     glTranslatef(1.5,-1.32,-1);
+     glScalef(5.0,0.05,20.0); 
+     kubussolid();
+     glPopMatrix();
+
+ //jalan
+     glPushMatrix();
+     glColor3f(0.122,0.668,0.53);
+     glTranslatef(-4.76,-1.32,-1);
+     glScalef(20.0,0.05,20.0); 
+     kubussolid();
+     glPopMatrix();
+
+ //TANAH
+
+     glPushMatrix();
+     glColor3f(0.12,1.8,0.53);
+     glTranslatef(4.76,-1.32,-1);
+     glScalef(8.0,0.05,20.0); 
      kubussolid();
      
      glPopMatrix();
+
      
 /*     
+     
      //DONAT-DONAT
 //DEPAN KIRI
      for(int i=0; i<=100; i++)
