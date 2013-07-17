@@ -8,7 +8,7 @@
 float sumbux=0.0, sumbuy=0.0, sumbuz=0.0;
 float sudut=0.0f;
 float vektorx=0.0f, vektorz=-1.0f;
-float x=0.0f, z=7.00f;
+float x=0.0f, z=9.00f;
 float pindahx =0.0, pindahy=0.0, pindahz=0.0;
 float xpos = 0, ypos = 1.2, zpos = -2.0, xrot = 7, yrot = 0, putary=0, angle=0.0; //Rotasi Sudut
 float inner, outer; int garisv,garish; //Variabel Torus
@@ -104,9 +104,6 @@ void bangun (int w, int h)
 
 void init (void)
 {
-
-
-
      GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
      GLfloat mat_shininess[] = {50.0};
      GLfloat light_position[] = {1.0, 1.0, 1.0, 1.0};
@@ -118,7 +115,7 @@ void init (void)
      glMaterialfv(GL_FRONT,GL_SPECULAR, mat_specular);
      glMaterialfv(GL_FRONT,GL_SHININESS, mat_shininess);
      glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-     glLightfv(GL_LIGHT0, GL_DIFFUSE, white_light);     
+     glLightfv(GL_LIGHT0, GL_DIFFUSE, white_light);
      glEnable(GL_DEPTH_TEST);
 }
 
@@ -222,7 +219,7 @@ void camera (void) {
 
 void display (void)
 {
-     const double waktu = glutGet (GLUT_ELAPSED_TIME) / 1000.0;
+         const double waktu = glutGet (GLUT_ELAPSED_TIME) / 1000.0;
      const double lama1 = 50*waktu, lama2 = 10*waktu, lama3 = waktu/10, lama4=10*waktu;
      GLdouble eqn[4] = {0.0, 0.0, 1.0, 0.0};
      GLdouble eqn2[4] = {1.0, 0.0, 0.0, 0.0};  
@@ -234,97 +231,58 @@ void display (void)
      //GLfloat light_position[] = {0.0, 0.0, 1.0, 1.0};
           
      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-     glClearColor(0.1, 0.39, 0.88, 1.0);
+     glClearColor(0.7,0.7,1.0,0.5);
      
      glLoadIdentity();
      
      //Setting Kamera
      gluLookAt(x, 0.0, z, x+vektorx, 0.0, z+vektorz, 0.0, 1.0, 0.0);
      camera();
-     //koordinaty();
-     //koordinatz();
+     glEnable(GL_TEXTURE_2D);
+     glEnable(GL_COLOR_MATERIAL);
+     //glColorMaterial(GL_FRONT,GL_SPECULAR);
+     glPushMatrix();
+      //CLIP untuk Y < 0
+     glClipPlane(GL_CLIP_PLANE0,eqn);
+     glEnable(GL_CLIP_PLANE0);
      
-     //penangkal Petir
-      
+     //CLIP untuk X < 0
+     glClipPlane(GL_CLIP_PLANE1,eqn2);
+     glEnable(GL_CLIP_PLANE1);
+     glPopMatrix();
+     glDisable(GL_CLIP_PLANE0);
+     glDisable(GL_CLIP_PLANE1);
+     
+     glPushMatrix();
+     glColor3f(1,0.49,0);
+     glTranslatef(-0.36,0.80,-1.76);
+     glScalef(0.05,0.5,0.05);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     cone (0.5,0.7,30,6);
+     glPopMatrix();
+  
+     //JALAN
+     glPushMatrix();
+     glColor3f(0.0,0.f,0.f);
+     glTranslatef(1.48,-1.32,-1);
+     glScalef(5.0,0.05,20.0); 
+     kubussolid();
+     glPopMatrix();
+
      //TANAH
      glPushMatrix();
-     glColor3f(0.4,0.6,0.2);
-     glTranslatef(0.0,-1.32,-1);
-     glScalef(25.0,0.05,20.0); 
+     glColor3f(0.32,0.32,0.32);
+     glTranslatef(-4.76,-1.32,-1);
+     glScalef(20.0,0.05,20.0); 
      kubussolid();
-     
      glPopMatrix();
-     
-/*     
-     //DONAT-DONAT
-//DEPAN KIRI
-     for(int i=0; i<=100; i++)
-     {
-     glEnable(GL_LIGHTING);
-    
-     glPushMatrix();
-     glColor3f(1.2,1.6,0.1);
-     glTranslatef(-0.79,-1.3+(i/10.0)*0.2,-1.38);
-     glScalef(0.17,0.17,0.17);
-     glRotatef(90.0,1.0,0.0,0.0);
-     torussolid(0.1,0.3,50,50);
-     glDisable(GL_LIGHTING); 
-     glPopMatrix();
-     }
+     //TANAH
 
-
-//BELAKANG KIRI
-     for(int i=0; i<=100; i++)
-     {
-     glEnable(GL_LIGHTING);
-    
-     glPushMatrix();
-     glColor3f(1.2,1.6,0.1);
-     glTranslatef(-0.79,-1.3+(i/10.0)*0.2,-2.2);
-     glScalef(0.17,0.17,0.17);
-     glRotatef(90.0,1.0,0.0,0.0);
-     torussolid(0.1,0.3,50,50);
-     glDisable(GL_LIGHTING); 
-     glPopMatrix();
-     }
-
-
-//DEPAM KANAN
-     for(int i=0; i<=100; i++)
-     {
-     glEnable(GL_LIGHTING);
-    
-     glPushMatrix();
-     glColor3f(1.2,1.6,0.1);
-     glTranslatef(0.05,-1.3+(i/10.0)*0.2,-1.38);
-     glScalef(0.17,0.17,0.17);
-     glRotatef(90.0,1.0,0.0,0.0);
-     torussolid(0.1,0.3,50,50);
-     glDisable(GL_LIGHTING); 
-     glPopMatrix();
-     }
-
-
-//BELAKANG KANAN
-     for(int i=0; i<=100; i++)
-     {
-     glEnable(GL_LIGHTING);
-    
-     glPushMatrix();
-     glColor3f(1.2,1.6,0.1);
-     glTranslatef(0.05,-1.3+(i/10.0)*0.2,-2.2);
-     glScalef(0.17,0.17,0.17);
-     glRotatef(90.0,1.0,0.0,0.0);
-     torussolid(0.1,0.3,50,50);
-     glDisable(GL_LIGHTING); 
-     glPopMatrix();
-     }
-  */   
      //GEDUNG 5
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(0.2,0.3,0.1);
+     glColor3f(1,0.49,0);
      glTranslatef(-0.36,1.28,-1.79);
      //glTranslatef(pindahx,pindahy,pindahz);
      glScalef(1.9,1.9,1.9);
@@ -332,12 +290,13 @@ void display (void)
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
      glPopMatrix();
+
      
      //GEDUNG 5.1
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(1.2,1.3,1.1);
+     glColor3f(1,0.49,0);
      glTranslatef(-0.36,0.38,-1.79);
      //glTranslatef(pindahx,pindahy,pindahz);
      glScalef(1.8,1.8,1.8);
@@ -350,10 +309,10 @@ void display (void)
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(0.2,0.3,1.1);
-     glTranslatef(-0.36,-0.50,-1.79);
+     glColor3f(1,0.49,0);
+     glTranslatef(-0.36,-0.77,-1.79);
      glRotatef(0.0,0.0,0.0,0.0);
-     glScalef(1.8,1.8,1.8);
+     glScalef(1.8,2.8,1.8);
      kubussolid();
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
@@ -363,7 +322,7 @@ void display (void)
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(1.2,1.3,1.1);
+     glColor3f(1,0.49,0);
      glTranslatef(-0.36,1.58,-1.79);
      //glTranslatef(pindahx,pindahy,pindahz);
      glScalef(1.8,1.8,1.8);
@@ -376,7 +335,7 @@ void display (void)
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(1.2,1.3,1.1);
+     glColor3f(1,0.49,0);
      glTranslatef(-0.36,-0.88,-1.79);
      //glTranslatef(pindahx,pindahy,pindahz);
      glScalef(1.8,1.8,1.8);
@@ -389,7 +348,20 @@ void display (void)
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(1.2,1.3,1.1);
+     glColor3f(1,0.49,0);
+     glTranslatef(-0.36,-0.88,-1.79);
+     //glTranslatef(pindahx,pindahy,pindahz);
+     glScalef(1.8,1.8,1.8);
+     kubussolid();         
+     glDisable(GL_LIGHTING);
+     glDisable(GL_LIGHT0);
+     glPopMatrix();
+     
+     //KUBUS PANGLUHURNA
+     glPushMatrix();
+     glEnable(GL_LIGHTING);
+     glEnable(GL_LIGHT0);
+     glColor3f(1,0.49,0);
      glTranslatef(-0.36,2.5,-1.79);
      //glTranslatef(pindahx,pindahy,pindahz);
      glScalef(1.2,0.9,1.2);
@@ -402,7 +374,7 @@ void display (void)
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(1.2,1.3,1.1);
+     glColor3f(1,0.49,0);
      glTranslatef(-2.9,-0.88,-1.7);
      //glTranslatef(pindahx,pindahy,pindahz);
      glScalef(7.8,1.8,1.8);
@@ -412,7 +384,7 @@ void display (void)
      glPopMatrix();
 
      for(int i=0; i<=1; i++)
-{     
+     {     
      //LIMAS gedung sebelah
      glPushMatrix();
      glEnable(GL_LIGHTING);
@@ -420,20 +392,18 @@ void display (void)
           glTranslatef(-2.0+(i+(i-1.5)),0.18,-1.6);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
-     glColor3f(0.2,0.3,1.1);
+     glColor3f(1,0.49,0);
      cone(0.40,0.46,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
      glPopMatrix();
           
-
      //GEDUNG GIGIREUN MENARA2 LUHUR KANAN
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(1.2,1.3,1.1);
+     glColor3f(1,0.49,0);
           glTranslatef(-2.0+(i+(i-1.5)),-0.1,-1.6);
-
      //glTranslatef(pindahx,pindahy,pindahz);
      glScalef(1.3,1.2,1.3);
      kubussolid();         
@@ -441,9 +411,117 @@ void display (void)
      glDisable(GL_LIGHT0);
      glPopMatrix();
      
-     for(int h=0;h<2;h++)
-     {
+     for(int u =0 ; u < 4; u++)
+     //TANGKAL NYUK
+{
+     glPushMatrix();
+     glTranslatef(0.15,-1.30,0.19+u);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.52,0.37,0.26);
+     glScalef(0.05,0.05,1.8);
+     kubus();
+     glPopMatrix();
 
+     //bohlam
+     glPushMatrix();
+     glEnable(GL_SPOT_CUTOFF);
+     glEnable(GL_LIGHT0);
+     glTranslatef(0.15,-0.8,0.19+u);
+     glScalef(0.04,0.1,0.08);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.2,0.7,0.26);
+     bola();
+     glDisable(GL_SPOT_CUTOFF);
+     glDisable(GL_LIGHT0);
+     glPopMatrix();
+     
+     //bingkai lampu taman   atas
+     glPushMatrix();
+     glTranslatef(0.15,-0.72,0.2+u);
+     glScalef(0.3,0.03,0.3);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.52,0.37,0.26);
+     kubus();
+     glPopMatrix();
+
+     //bingkai lampu taman kiri
+     glPushMatrix();
+     glTranslatef(0.19,-0.87,0.19+u);
+     glScalef(0.3,0.04,0.3);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.52,0.37,0.26);
+     kubus();
+     glPopMatrix();
+
+     //bingkai lampu taman kanan
+     glPushMatrix();
+     glTranslatef(0.08,-0.87,0.19+u);
+     glScalef(0.03,0.04,0.3);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.52,0.37,0.26);
+     kubus();
+     glPopMatrix();
+
+     //bingkai lampu taman depan
+     glPushMatrix();
+     glTranslatef(0.15,-0.87,0.28+u);
+     glScalef(0.3,0.04,0.03);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.52,0.37,0.26);
+     kubus();
+     glPopMatrix();
+
+     //bingkai lampu taman belakang
+     glPushMatrix();
+     glTranslatef(0.15,-0.87,0.11+u);
+     glScalef(0.3,0.04,0.03);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.52,0.37,0.26);
+     kubus();
+     glPopMatrix();
+
+     //properti tihang
+     glPushMatrix();
+     glEnable(GL_LIGHTING);
+     glEnable(GL_LIGHT0);
+     glTranslatef(0.15,-1.0,0.19+u);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.52,0.37,0.26);
+     torussolid(0.02,0.02,20,20);
+     glDisable(GL_LIGHTING);
+     glDisable(GL_LIGHT0);
+     glPopMatrix();
+
+     glPushMatrix();
+     glEnable(GL_LIGHTING);
+     glEnable(GL_LIGHT0);
+     glTranslatef(0.15,-1.3,0.19+u);
+     glRotatef(45.0,0.0,1.0,0.0);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     glColor3f(0.52,0.37,0.26);
+     cone(0.10,0.16,4,2);
+     glDisable(GL_LIGHTING);
+     glDisable(GL_LIGHT0);
+     glPopMatrix();
+     
+     //kotak jang lAMPU
+     glMaterialfv(GL_FRONT, GL_EMISSION, mat_zero);
+     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_solid);
+     glPushMatrix();
+     glColor3f(0.2,0.4,1.0);
+     glMaterialfv(GL_FRONT, GL_EMISSION, mat_emission);
+     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_transparent);
+     glEnable(GL_BLEND);
+     glDepthMask(GL_TRUE);
+     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+     glTranslatef(0.15,-0.8,0.2+u);
+     glScalef(0.3,0.3,0.3);
+     kubus();
+     glDisable(GL_BLEND);
+     glPopMatrix();
+}     
+for(int h=0;h<2;h++)
+{
      glEnable(GL_LIGHTING);
      //LIMAS diawal menara kecil
      glPushMatrix();
@@ -452,11 +530,12 @@ void display (void)
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.21,-1.33);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
-     glColor3f(0.2,0.3,1.1);
+     glColor3f(1,0.49,0);
      cone(0.08,0.08,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
      glPopMatrix();
+     
      //LIMAS diawal menara kecil
      glPushMatrix();
      glEnable(GL_LIGHTING);
@@ -464,7 +543,7 @@ void display (void)
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.21,-1.89);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
-     glColor3f(0.2,0.3,1.1);
+     glColor3f(1,0.49,0);
      cone(0.08,0.8,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
@@ -477,13 +556,12 @@ void display (void)
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.61,-1.30);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
-     glColor3f(0.2,0.3,1.1);
+     glColor3f(1,0.49,0);
      cone(0.04,0.04,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
      glPopMatrix();
-          
-
+     
      //LIMAS diatas menara kecil
      glPushMatrix();
      glEnable(GL_LIGHTING);
@@ -491,21 +569,17 @@ void display (void)
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.61,-1.89);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
-     glColor3f(0.2,0.3,1.1);
+     glColor3f(1,0.49,0);
      cone(0.04,0.04,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
      glPopMatrix();
           
-
-
-    
-
      //menara kecil kecil
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(1.2,1.3,1.1);
+     glColor3f(1,0.49,0);
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.3,-1.3);
      glScalef(0.09,1.2,0.09);
      kubussolid();         
@@ -519,25 +593,23 @@ void display (void)
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
-     glColor3f(1.2,1.3,1.1);
+     glColor3f(1,0.49,0);
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.3,-1.89);
      glScalef(0.09,1.2,0.09);
      kubussolid();         
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
      glPopMatrix();
-     
-     }
-
-                    
+     }                    
 }    
+     //Atap digedung sebelah tengah
      //LIMAS digedung sebelah tengah
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
      glTranslatef(-2.5,-0.4,-1.80);
-     glRotatef(45.1,0,0.0,7.0);
-     glColor3f(0.2,0.3,1.1);
+     glRotatef(45.9,0,1,7);
+     glColor3f(1,0.49,0);
      kubus();
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
@@ -548,14 +620,12 @@ void display (void)
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
      glTranslatef(-2.5,-0.04,-1.80);
-     glColor3f(0.2,0.3,1.1);
+     glColor3f(1,0.49,0);
      glScalef(0.03,0.1,1.09);
-          kubus();
+     kubus();
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
      glPopMatrix();
-
-
      
      //LIMAS
      glPushMatrix();
@@ -564,7 +634,7 @@ void display (void)
      glTranslatef(-0.36,2.03,-1.79);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
-     glColor3f(0.2,0.3,1.1);
+     glColor3f(1,0.49,0);
      cone(0.60,0.86,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
@@ -577,7 +647,7 @@ void display (void)
      glTranslatef(-0.36,2.72,-1.79);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
-     glColor3f(0.2,0.3,1.1);
+     glColor3f(1,0.49,0);
      cone(0.43,0.86,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
@@ -608,7 +678,7 @@ void display (void)
      glPushMatrix();
      glScalef(0.2,0.2,0.2);
      glRotatef(90.0,0.0,1.0,0.0);
-         
+     
      //BADAN MOBIL
      glPushMatrix();
      glTranslatef(0.9,-0.135,0.0);
@@ -631,8 +701,6 @@ void display (void)
      glPopMatrix();
      //AKHIR BADAN MOBIL
      
-
-
      //sekat badan mobil
      glPushMatrix();
      glTranslatef(0.9,0.55,0.0);
@@ -644,6 +712,27 @@ void display (void)
      glPopMatrix();
      //AKHIR BADAN MOBIL
      
+     //sekat badan mobil
+     glPushMatrix();
+     glTranslatef(0.9,0.55,0.0);
+     glScalef(10.0,0.27,2.0);
+     glColor3f(0.0,0.0,0.0);
+     kubussolid();
+     glColor3f(0.8,0.8,0.8);
+     kubus();
+     glPopMatrix();
+     //AKHIR BADAN MOBIL
+     
+     //sekat badan mobil
+     glPushMatrix();
+     glTranslatef(0.9,0.55,0.0);
+     glScalef(10.0,0.27,2.0);
+     glColor3f(0.0,0.0,0.0);
+     kubussolid();
+     glColor3f(0.8,0.8,0.8);
+     kubus();
+     glPopMatrix();
+     //AKHIR BADAN MOBIL
 
      //KAP MOBIL
      glPushMatrix();
@@ -666,7 +755,6 @@ void display (void)
      glTranslatef(-1.5,0.0,0.0);
      glScalef(0.8,0.7,2.0);
      glRotatef(45,0.0,0.0,1.0);
-     
      kubussolid(); 
      glDisable(GL_BLEND);
      glPopMatrix();
@@ -684,13 +772,11 @@ void display (void)
      glTranslatef(-1.5,1.0,0.0);
      glScalef(0.8,0.7,2.0);
      glRotatef(45,0.0,0.0,1.0);
-     
      kubussolid(); 
      glDisable(GL_BLEND);
      glPopMatrix();
      //AKHIR JENDELA
      
-         
      //RODA KIRI DEPAN
      glPushMatrix();
      glScalef(0.8,0.8,0.8);
@@ -734,6 +820,14 @@ void display (void)
      glPopMatrix();
 
 //grid bus
+     glPushMatrix();
+     glTranslatef(-1.7,-0.45,0.05);
+     glScalef(0.1,0.01,0.9);
+     glColor3f(0.8,0.8,0.8);
+     kubus();
+     glPopMatrix();
+
+     glPushMatrix();
      glPushMatrix();
      glTranslatef(-1.7,-0.45,0.05);
      glScalef(0.1,0.01,0.9);
@@ -953,6 +1047,11 @@ int main(int argc, char **argv)
     glutMainLoop();
     return 0;
 }
+
+
+
+
+
 
 
 
