@@ -116,7 +116,13 @@ void init (void)
      glMaterialfv(GL_FRONT,GL_SHININESS, mat_shininess);
      glLightfv(GL_LIGHT0, GL_POSITION, light_position);
      glLightfv(GL_LIGHT0, GL_DIFFUSE, white_light);
+<<<<<<< HEAD
+=======
+     
+     
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      glEnable(GL_DEPTH_TEST);
+      
 }
 
 //Garis Koordinat
@@ -241,6 +247,12 @@ void display (void)
      glEnable(GL_TEXTURE_2D);
      glEnable(GL_COLOR_MATERIAL);
      //glColorMaterial(GL_FRONT,GL_SPECULAR);
+<<<<<<< HEAD
+     glPushMatrix();
+      //CLIP untuk Y < 0
+     glClipPlane(GL_CLIP_PLANE0,eqn);
+     glEnable(GL_CLIP_PLANE0);
+=======
      glPushMatrix();
       //CLIP untuk Y < 0
      glClipPlane(GL_CLIP_PLANE0,eqn);
@@ -253,6 +265,72 @@ void display (void)
      glDisable(GL_CLIP_PLANE0);
      glDisable(GL_CLIP_PLANE1);
      
+     glPushMatrix();
+     
+     glColor3f(1,0.49,0);
+     glTranslatef(-0.36,0.80,-1.76);
+     glScalef(0.05,0.5,0.05);
+     glRotatef(-90.0,1.0,0.0,0.0);
+     cone (0.5,0.7,30,6);
+     glPopMatrix();
+  
+ //TANAH
+     glPushMatrix();
+     glColor3f(0.0,0.0,0.0);
+     glTranslatef(1.5,-1.32,-1);
+     glScalef(5.0,0.05,20.0); 
+     kubussolid();
+     glPopMatrix();
+
+ //jalan
+     glPushMatrix();
+     glColor3f(0.122,0.668,0.53);
+     glTranslatef(-4.76,-1.32,-1);
+     glScalef(20.0,0.05,20.0); 
+     kubussolid();
+     glPopMatrix();
+
+ //TANAH
+
+     glPushMatrix();
+<<<<<<< HEAD
+     glColor3f(0.12,1.8,0.53);
+     glTranslatef(4.76,-1.32,-1);
+     glScalef(8.0,0.05,20.0); 
+=======
+     glColor3f(0.4,0.6,0.2);
+     glTranslatef(0.0,-1.32,-1);
+     glScalef(25.0,0.05,20.0); 
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+     kubussolid();
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
+     
+     //CLIP untuk X < 0
+     glClipPlane(GL_CLIP_PLANE1,eqn2);
+     glEnable(GL_CLIP_PLANE1);
+     glPopMatrix();
+<<<<<<< HEAD
+     glDisable(GL_CLIP_PLANE0);
+     glDisable(GL_CLIP_PLANE1);
+     
+=======
+
+     
+/*     
+<<<<<<< HEAD
+<<<<<<< HEAD
+     
+=======
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+     //DONAT-DONAT
+//DEPAN KIRI
+     for(int i=0; i<=100; i++)
+     {
+     glEnable(GL_LIGHTING);
+    
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      glPushMatrix();
      glColor3f(1,0.49,0);
      glTranslatef(-0.36,0.80,-1.76);
@@ -332,6 +410,8 @@ void display (void)
      glPopMatrix();
      
      //KUBUS PANGHANDAPNA
+<<<<<<< HEAD
+=======
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
@@ -345,10 +425,15 @@ void display (void)
      glPopMatrix();
      
      //KUBUS PANGLUHURNA
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+     glColor3f(1.2,1.3,1.1);
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      glTranslatef(-0.36,-0.88,-1.79);
      //glTranslatef(pindahx,pindahy,pindahz);
      glScalef(1.8,1.8,1.8);
@@ -374,7 +459,19 @@ void display (void)
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glColor3f(1,0.49,0);
+=======
+     glColor3f(1.2,1.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glColor3f(1.2,1.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      glTranslatef(-2.9,-0.88,-1.7);
      //glTranslatef(pindahx,pindahy,pindahz);
      glScalef(7.8,1.8,1.8);
@@ -384,7 +481,19 @@ void display (void)
      glPopMatrix();
 
      for(int i=0; i<=1; i++)
+<<<<<<< HEAD
      {     
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     {     
+=======
+{     
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+{     
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      //LIMAS gedung sebelah
      glPushMatrix();
      glEnable(GL_LIGHTING);
@@ -392,17 +501,52 @@ void display (void)
           glTranslatef(-2.0+(i+(i-1.5)),0.18,-1.6);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glColor3f(1,0.49,0);
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      cone(0.40,0.46,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
      glPopMatrix();
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
           
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+          
+<<<<<<< HEAD
+=======
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      //GEDUNG GIGIREUN MENARA2 LUHUR KANAN
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glColor3f(1,0.49,0);
+=======
+     glColor3f(1.2,1.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glColor3f(1.2,1.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
           glTranslatef(-2.0+(i+(i-1.5)),-0.1,-1.6);
      //glTranslatef(pindahx,pindahy,pindahz);
      glScalef(1.3,1.2,1.3);
@@ -530,7 +674,19 @@ for(int h=0;h<2;h++)
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.21,-1.33);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glColor3f(1,0.49,0);
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      cone(0.08,0.08,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
@@ -543,7 +699,19 @@ for(int h=0;h<2;h++)
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.21,-1.89);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glColor3f(1,0.49,0);
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      cone(0.08,0.8,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
@@ -556,12 +724,36 @@ for(int h=0;h<2;h++)
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.61,-1.30);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glColor3f(1,0.49,0);
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      cone(0.04,0.04,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
      glPopMatrix();
+<<<<<<< HEAD
      
+=======
+          
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      //LIMAS diatas menara kecil
      glPushMatrix();
      glEnable(GL_LIGHTING);
@@ -569,17 +761,57 @@ for(int h=0;h<2;h++)
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.61,-1.89);
      glRotatef(45.0,0.0,1.0,0.0);
      glRotatef(-90.0,1.0,0.0,0.0);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glColor3f(1,0.49,0);
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      cone(0.04,0.04,4,2);
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
      glPopMatrix();
           
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+
+
+    
+
+<<<<<<< HEAD
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      //menara kecil kecil
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glColor3f(1,0.49,0);
+=======
+     glColor3f(1.2,1.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glColor3f(1.2,1.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.3,-1.3);
      glScalef(0.09,1.2,0.09);
      kubussolid();         
@@ -593,7 +825,19 @@ for(int h=0;h<2;h++)
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glColor3f(1,0.49,0);
+=======
+     glColor3f(1.2,1.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glColor3f(1.2,1.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      glTranslatef(-1.77+(h/1.8)+(i+(i-2.0)),0.3,-1.89);
      glScalef(0.09,1.2,0.09);
      kubussolid();         
@@ -602,14 +846,40 @@ for(int h=0;h<2;h++)
      glPopMatrix();
      }                    
 }    
+<<<<<<< HEAD
      //Atap digedung sebelah tengah
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+//Atap digedung sebelah tengah
+=======
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      //LIMAS digedung sebelah tengah
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     //LIMAS digedung sebelah tengah
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
      glPushMatrix();
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
      glTranslatef(-2.5,-0.4,-1.80);
+<<<<<<< HEAD
      glRotatef(45.9,0,1,7);
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glRotatef(45.9,0,1,7);
+     glColor3f(1,0.49,0);
+=======
+     glRotatef(45.1,0,0.0,7.0);
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glRotatef(45.1,0,0.0,7.0);
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      kubus();
      glDisable(GL_LIGHTING);
      glDisable(GL_LIGHT0);
@@ -620,7 +890,19 @@ for(int h=0;h<2;h++)
      glEnable(GL_LIGHTING);
      glEnable(GL_LIGHT0);
      glTranslatef(-2.5,-0.04,-1.80);
+<<<<<<< HEAD
      glColor3f(1,0.49,0);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+     glColor3f(1,0.49,0);
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+     glColor3f(0.2,0.3,1.1);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      glScalef(0.03,0.1,1.09);
      kubus();
      glDisable(GL_LIGHTING);
@@ -695,17 +977,42 @@ for(int h=0;h<2;h++)
      glTranslatef(0.9,0.95,0.0);
      glScalef(10.0,1.47,2.0);
      glColor3f(1.0,0.0,0.0);
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
      kubussolid();
      glColor3f(0.8,0.8,0.8);
      kubus();
      glPopMatrix();
      //AKHIR BADAN MOBIL
      
+
+
      //sekat badan mobil
      glPushMatrix();
      glTranslatef(0.9,0.55,0.0);
      glScalef(10.0,0.27,2.0);
      glColor3f(0.0,0.0,0.0);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+     kubussolid();
+     glColor3f(0.8,0.8,0.8);
+     kubus();
+     glPopMatrix();
+     //AKHIR BADAN MOBIL
+     
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
+     //sekat badan mobil
+     glPushMatrix();
+     glTranslatef(0.9,0.55,0.0);
+     glScalef(10.0,0.27,2.0);
+     glColor3f(0.0,0.0,0.0);
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
      kubussolid();
      glColor3f(0.8,0.8,0.8);
      kubus();
@@ -734,6 +1041,24 @@ for(int h=0;h<2;h++)
      glPopMatrix();
      //AKHIR BADAN MOBIL
 
+<<<<<<< HEAD
+
+     //sekat badan mobil
+     glPushMatrix();
+     glTranslatef(0.9,0.55,0.0);
+     glScalef(10.0,0.27,2.0);
+     glColor3f(0.0,0.0,0.0);
+     kubussolid();
+     glColor3f(0.8,0.8,0.8);
+     kubus();
+     glPopMatrix();
+     //AKHIR BADAN MOBIL
+     
+
+=======
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
      //KAP MOBIL
      glPushMatrix();
      glTranslatef(-1.6,-0.45,0.0);
@@ -820,6 +1145,8 @@ for(int h=0;h<2;h++)
      glPopMatrix();
 
 //grid bus
+<<<<<<< HEAD
+<<<<<<< HEAD
      glPushMatrix();
      glTranslatef(-1.7,-0.45,0.05);
      glScalef(0.1,0.01,0.9);
@@ -828,6 +1155,9 @@ for(int h=0;h<2;h++)
      glPopMatrix();
 
      glPushMatrix();
+=======
+=======
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
      glPushMatrix();
      glTranslatef(-1.7,-0.45,0.05);
      glScalef(0.1,0.01,0.9);
@@ -836,6 +1166,21 @@ for(int h=0;h<2;h++)
      glPopMatrix();
 
      glPushMatrix();
+<<<<<<< HEAD
+     glPushMatrix();
+     glTranslatef(-1.7,-0.45,0.05);
+     glScalef(0.1,0.01,0.9);
+     glColor3f(0.8,0.8,0.8);
+     kubus();
+     glPopMatrix();
+
+     glPushMatrix();
+=======
+<<<<<<< HEAD
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+=======
+>>>>>>> 9c89b3aecc0cf7bbe31a493e99eb12d2198c1a9f
+>>>>>>> e2d599e4920bad91f0c4cc5c2bdcf004b104ea54
      glTranslatef(-1.7,-0.55,0.05);
      glScalef(0.1,0.01,0.9);
      glColor3f(0.8,0.8,0.8);
