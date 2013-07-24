@@ -1,14 +1,14 @@
-#include <stdio.h>
+#include <stdio.h> // Header File For Standard
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
+#include <math.h> // Math Library Header File
 #ifdef __APPLE__
 #include <OpenGL/OpenGL.h>
 #include <GLUT/glut.h>
 #else
 #include <GL/glut.h>
-#include <GL/glu.h>
-#include <GL/gl.h>
+#include <GL/glu.h> // Header File For The GLu32 Library
+#include <GL/gl.h> // Header File For The OpenGL32 Library
 #include <time.h>
 #include <sys/timeb.h>
 #include "imageloader.h"
@@ -252,9 +252,12 @@ void TimerFunction(int value){
   angleMin = (float)(t->tm_min)/30.0f * M_PI + angleSec/60.0f;
   angleHour = (float)(t->tm_hour > 12 ? t->tm_hour-12 : t->tm_hour)/6.0f * M_PI+
               angleMin/12.0f;
-
-  glutPostRedisplay();
-  glutTimerFunc(33,TimerFunction, 1);
+  
+  // called if timer event
+  // ...advance the state of animation incrementally...
+  //rot+=1;
+  glutPostRedisplay(); // request redisplay
+  glutTimerFunc(33,TimerFunction, 1); // request next timer event
 }
 //AKHIR FUNGSI JAM
 
@@ -337,6 +340,7 @@ void drawSceneTanah(Terrain *terrain, GLfloat r, GLfloat g, GLfloat b) {
 
 	glColor3f(r, g, b);
 	for (int z = 0; z < terrain->length() - 1; z++) {
+        // Process Each Triangle
 		//Makes OpenGL draw a triangle at every three consecutive vertices
 		glBegin(GL_TRIANGLE_STRIP);
 		for (int x = 0; x < terrain->width(); x++) {
@@ -358,7 +362,7 @@ void menara()
 {      
     //kotak yang tinggi
     glPushMatrix();
-    glTranslatef(50.0, 75.0, 35.5);
+    glTranslatef(50.0, 75.0, 35.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glColor3f(1,0.49,0);
     glScalef(40.0, 155.0, 40.0);
     glutSolidCube(1.0f); //kubus solid
@@ -366,7 +370,7 @@ void menara()
     
     //kotak anu gede na men
     glPushMatrix();
-    glTranslatef(50.0, 125.0, 36.5);
+    glTranslatef(50.0, 125.0, 36.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glColor3f(1, 0.49, 0);
     glScalef(43.0, 38.0, 48.0);
     glutSolidCube(1.0f); //kubus solid
@@ -374,7 +378,7 @@ void menara()
 
     //limas runving
     glPushMatrix();
-    glTranslatef(50.9,200.5, 36.5);
+    glTranslatef(50.9,200.5, 36.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(45.0,0.0,1.0,0.0);
     glRotatef(-90.0,1.0,0.0,0.0);
     glColor3f(1,0.49,0);
@@ -383,7 +387,7 @@ void menara()
     
     //limas1
     glPushMatrix();
-    glTranslatef(50.0, 153.5, 35.5);
+    glTranslatef(50.0, 153.5, 35.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(45.0,0.0,1.0,0.0);
     glRotatef(-90.0,1.0,0.0,0.0);
     glColor3f(1,0.49,0);
@@ -396,7 +400,7 @@ void menara()
          for(int t=0;t<8;t++)
 
  {   glPushMatrix();
-     glTranslatef(33+(t*5), 80.5-(n*45),55);
+     glTranslatef(33+(t*5), 80.5-(n*45),55); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(1.0, 20.0, 1.0);
     glColor3f(0.1f, 0.1f, 0.1f);
     glutSolidCube(2); //kerucut
@@ -407,7 +411,7 @@ void menara()
          for(int t=0;t<7;t++)
 
  {   glPushMatrix();
-     glTranslatef(34+(t*5), 148.5,85);
+     glTranslatef(34+(t*5), 148.5,85); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(1.0, 2.0, 1.0);
     glColor3f(0.0f, 0.1f, 0.1f);
     glutSolidCube(2); //kerucut
@@ -418,7 +422,7 @@ void menara()
          for(int t=0;t<7;t++)
 
  {   glPushMatrix();
-     glTranslatef(39+(t*3.5), 173.5,85);
+     glTranslatef(39+(t*3.5), 173.5,85); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(1.0, 5.0, 1.0);
     glColor3f(0.0f, 0.0f, 0.0f);
     glutSolidCube(2); //kerucut
@@ -431,7 +435,7 @@ void menara()
          for(int t=0;t<8;t++)
 
  {   glPushMatrix();
-     glTranslatef(33+(t*5), 80.5-(n*45),16);
+     glTranslatef(33+(t*5), 80.5-(n*45),16); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(1.0, 20.0, 1.0);
     glColor3f(0.4f, 0.1f, 0.1f);
     glutSolidCube(2); //kerucut
@@ -441,7 +445,7 @@ void menara()
  
  //sekat gedung tengah
     glPushMatrix();
-     glTranslatef(50,58,55);
+     glTranslatef(50,58,55); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(20.0, 1.0, 1.0);
     glColor3f(0.1f, 0.1f, 0.1f);
     glutSolidCube(2); //kerucut
@@ -449,28 +453,28 @@ void menara()
 
  //sekat gedung bawah
     glPushMatrix();
-     glTranslatef(50,12,55);
+     glTranslatef(50,12,55); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(20.0, 1.0, 1.0);
     glColor3f(0.1f, 0.1f, 0.1f);
     glutSolidCube(2); //kerucut
     glPopMatrix();
  //sekat gedung bawah
     glPushMatrix();
-     glTranslatef(50,7,55);
+     glTranslatef(50,7,55); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(20.0, 1.0, 1.0);
     glColor3f(0.1f, 0.1f, 0.1f);
     glutSolidCube(2); //kerucut
     glPopMatrix();
  //sekat gedung bawah
     glPushMatrix();
-     glTranslatef(50,2,55);
+     glTranslatef(50,2,55); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(20.0, 1.0, 1.0);
     glColor3f(0.1f, 0.1f, 0.1f);
     glutSolidCube(2); //kerucut
     glPopMatrix();
      //sekat gedung atas
     glPushMatrix();
-     glTranslatef(50,103,55);
+     glTranslatef(50,103,55); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(20.0, 1.0, 1.0);
     glColor3f(0.1f, 0.1f, 0.1f);
     glutSolidCube(2); //kerucut
@@ -484,7 +488,7 @@ void menara()
    {
     glPushMatrix();
     
-    glTranslatef(40+(z*10), 160.5-(o*6),47+y);
+    glTranslatef(40+(z*10), 160.5-(o*6),47+y); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(45.0,0.0,1.0,0.0);
     glRotatef(-90.0,1.0,0.0,0.0);
     glColor3f(0.9f, 0.9f, 0.9f);
@@ -495,7 +499,7 @@ void menara()
 } 
     //kotak anu luhur pisan
     glPushMatrix();
-    glTranslatef(50.0, 170.0, 35.5);
+    glTranslatef(50.0, 170.0, 35.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glColor3f(1,0.49,0);
     glScalef(30.0, 30.0, 30.0);
     glutSolidCube(1.0f); //kubus solid
@@ -503,7 +507,7 @@ void menara()
     
     //limas2
     glPushMatrix();
-    glTranslatef(50.0, 185.0, 40.5);
+    glTranslatef(50.0, 185.0, 40.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(45.0,0.0,1.0,0.0);
     glRotatef(-90.0,1.0,0.0,0.0);
     glColor3f(1,0.49,0);
@@ -515,14 +519,14 @@ void ngepek(){
      //JAM BIGBANG
      glPushMatrix();
      glColor3f(0.9,0.9,0.9);
-     glTranslatef(50.35, 125, 54.26);
+     glTranslatef(50.35, 125, 54.26); // We move the object forward (the model matrix is multiplied by the translation matrix)
      glScalef(38.78, 38.78, 19.12);
      glutSolidSphere(0.5,20,20); //bola 
      glPopMatrix();
      
      //JAM
      glPushMatrix();
-     glTranslatef(50.35, 125, 64.26);
+     glTranslatef(50.35, 125, 64.26); // We move the object forward (the model matrix is multiplied by the translation matrix)
      glScalef(30, 30, 30);
      jam();
      glPopMatrix();
@@ -534,7 +538,7 @@ void gedungsebelah(int y)
     //gedungpersegipanjangmen
     glPushMatrix();
     glColor3f(1,0.49,0);
-    glTranslatef(-57.9, 20.0, 35.7);
+    glTranslatef(-57.9, 20.0, 35.7); // We move the object forward (the model matrix is multiplied by the translation matrix)
     //glTranslatef(pindahx,pindahy,pindahz);
     glScalef(328.8,91.8,81.8);
     glutSolidCube(0.5); //kubus solid  
@@ -546,7 +550,7 @@ void gedungsebelah(int y)
          for(int t=0;t<8;t++)
          {   
              glPushMatrix();
-             glTranslatef(-56+(t*10), 110.5-(n*45),-46);
+             glTranslatef(-56+(t*10), 110.5-(n*45),-46); // We move the object forward (the model matrix is multiplied by the translation matrix)
              glScalef(3.0, 20.0, 1.0);
              glColor3f(0.7f, 0.7f, 0.7f);
              glutSolidCube(2); //kerucut
@@ -560,7 +564,7 @@ void gedungsebelah(int y)
          for(int t=0;t<8;t++)
          {   
              glPushMatrix();
-             glTranslatef(-56+(t*10), 110.5-(n*45),-136);
+             glTranslatef(-56+(t*10), 110.5-(n*45),-136); // We move the object forward (the model matrix is multiplied by the translation matrix)
              glScalef(3.0, 20.0, 1.0);
              glColor3f(0.7f, 0.7f, 0.7f);
              glutSolidCube(2); //kerucut
@@ -569,7 +573,7 @@ void gedungsebelah(int y)
     }
 
     glPushMatrix();
-    glTranslatef(-21, 138.5,-46);
+    glTranslatef(-21, 138.5,-46); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(23.0, 4.0, 1.0);
     glColor3f(0.7f, 0.7f, 0.7f);
     glutSolidCube(2); //kerucut
@@ -578,7 +582,7 @@ void gedungsebelah(int y)
     //gedungbelakang
     glPushMatrix();
     glColor3f(1,0.49,0);
-    glTranslatef(-30, 18.0, -90.7);
+    glTranslatef(-30, 18.0, -90.7); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(45.0,0.0,1.0,0.0);
     glRotatef(-90.0,1.0,0.0,0.0);
     glutSolidTorus(50,80,20,4); //donat  
@@ -586,7 +590,7 @@ void gedungsebelah(int y)
     
     //limas runving
     glPushMatrix();
-    glTranslatef(-20.9,140.5, -56.5);
+    glTranslatef(-20.9,140.5, -56.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(45.0,0.0,1.0,0.0);
     glRotatef(-90.0,1.0,0.0,0.0);
     glColor3f(1,0.49,0);
@@ -597,7 +601,7 @@ void gedungsebelah(int y)
     //menara tengah
     glPushMatrix();
     glColor3f(1,0.49,0);
-    glTranslatef(-20.9, 80.0, -90.7);
+    glTranslatef(-20.9, 80.0, -90.7); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(158.8,220.8,181.8);
     glutSolidCube(0.5); //kubus solid
     glPopMatrix();
@@ -605,7 +609,7 @@ void gedungsebelah(int y)
     //menara tengah  yang atas
     glPushMatrix();
     glColor3f(1,0.49,0);
-    glTranslatef(-20.9, 140.0, -90.7);
+    glTranslatef(-20.9, 140.0, -90.7); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(138.8,20.8,181.8);
     glutSolidCube(0.5); //kubus solid
     glPopMatrix();
@@ -613,14 +617,14 @@ void gedungsebelah(int y)
     //gedungpersegimen
     glPushMatrix();
     glColor3f(1,0.49,0);
-    glTranslatef(-95.9+(y*80), 60.0, 35.7);
+    glTranslatef(-95.9+(y*80), 60.0, 35.7); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glScalef(58.8,71.8,81.8);
     glutSolidCube(0.5); //kubus solid
     glPopMatrix();
     
     //limasnaieumah
     glPushMatrix();
-    glTranslatef(-97.9+(y*80), 77.5, 35.5);
+    glTranslatef(-97.9+(y*80), 77.5, 35.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(45.0,0.0,1.0,0.0);
     glRotatef(-90.0,1.0,0.0,0.0);
     glColor3f(1,0.49,0);
@@ -629,7 +633,7 @@ void gedungsebelah(int y)
     
     //limas runving
     glPushMatrix();
-    glTranslatef(-97.9+(y*80), 97.5, 35.5);
+    glTranslatef(-97.9+(y*80), 97.5, 35.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(45.0,0.0,1.0,0.0);
     glRotatef(-90.0,1.0,0.0,0.0);
     glColor3f(1,0.49,0);
@@ -638,7 +642,7 @@ void gedungsebelah(int y)
     
     //jendela atas kiri
     glPushMatrix();
-    glTranslatef(-100.9+(y*80), 70.5, 55.5);
+    glTranslatef(-100.9+(y*80), 70.5, 55.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(7.0, 7.0, 1.7);
@@ -647,7 +651,7 @@ void gedungsebelah(int y)
 
     //jendela atas kiri
     glPushMatrix();
-    glTranslatef(-90.9+(y*80), 70.5, 55.5);
+    glTranslatef(-90.9+(y*80), 70.5, 55.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(7.0, 7.0, 1.7);
@@ -656,7 +660,7 @@ void gedungsebelah(int y)
 
     //jendela bawah kiri
     glPushMatrix();
-    glTranslatef(-100.9+(y*80), 60.5, 55.5);
+    glTranslatef(-100.9+(y*80), 60.5, 55.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(7.0, 7.0, 1.7);
@@ -665,7 +669,7 @@ void gedungsebelah(int y)
 
     //jendela bawah kiri
     glPushMatrix();
-    glTranslatef(-90.9+(y*80), 60.5, 55.5);
+    glTranslatef(-90.9+(y*80), 60.5, 55.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(7.0, 7.0, 1.7);
@@ -673,7 +677,7 @@ void gedungsebelah(int y)
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(-93.5, 40, 18.5);
+    glTranslatef(-93.5, 40, 18.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(0.7f, 0.3f, 0.1f);
     glScalef(9.0, 9.0, 1.5);
@@ -681,7 +685,7 @@ void gedungsebelah(int y)
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(-93.5, 44.0, 18.5);
+    glTranslatef(-93.5, 44.0, 18.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glRotatef(45,0,0,1);
     glColor3f(0.9f, 0.9f, 0.9f);
@@ -690,7 +694,7 @@ void gedungsebelah(int y)
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(-93.5, 44.0, 18.5);
+    glTranslatef(-93.5, 44.0, 18.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glRotatef(45,0,0,1);
     glColor3f(0.7f, 0.3f, 0.1f);
@@ -699,7 +703,7 @@ void gedungsebelah(int y)
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(-93.5, 40.0, 18.5);
+    glTranslatef(-93.5, 40.0, 18.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(0.7f, 0.3f, 0.1f);
     glScalef(1.0, 9.0, 2.1);
@@ -707,7 +711,7 @@ void gedungsebelah(int y)
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(-93.5, 40, 18.5);
+    glTranslatef(-93.5, 40, 18.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(0.7f, 0.3f, 0.1f);
     glScalef(9.0, 1.0, 2.1);
@@ -715,7 +719,7 @@ void gedungsebelah(int y)
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(-93.5, 40, 18.5);
+    glTranslatef(-93.5, 40, 18.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(0.7f, 0.3f, 0.1f);
     glScalef(9.0, 1.0, 2.1);
@@ -726,7 +730,7 @@ void gedungsebelah(int y)
 void telepon(){
     //wartel 
     glPushMatrix();
-    glTranslatef(128.5, 10.0, 78.5);
+    glTranslatef(128.5, 10.0, 78.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 0.0, 0.0);
     glScalef(14.0, 25.0, 15.1);
@@ -735,14 +739,14 @@ void telepon(){
     
     glPushMatrix();
     glColor3f(1.0, 0.0, 0.0);
-    glTranslatef(128.8, 20.0, 78.5);
+    glTranslatef(128.8, 20.0, 78.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(16, 16, 16);
 	glutSolidSphere(0.5, 8, 5); //bola
 	glPopMatrix();
     
     //jendela hareupna
     glPushMatrix();
-    glTranslatef(128.5, 11.2, 88.5);
+    glTranslatef(128.5, 11.2, 88.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 1.0, 1.0);
     glScalef(12.0, 18.0, 1.0);
@@ -751,7 +755,7 @@ void telepon(){
     
     //jendela hareupna tapi anu garis beureum anu ka hiji
     glPushMatrix();
-    glTranslatef(128.5, 5.8, 89.5);
+    glTranslatef(128.5, 5.8, 89.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 0.0, 0.0);
     glScalef(12.0, 2.0, 1.0);
@@ -760,7 +764,7 @@ void telepon(){
     
     //jendela hareupna tapi anu garis beureum anu ka dua
     glPushMatrix();
-    glTranslatef(128.5, 10.8, 89.5);
+    glTranslatef(128.5, 10.8, 89.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 0.0, 0.0);
     glScalef(12.0, 2.0, 1.0);
@@ -769,7 +773,7 @@ void telepon(){
     
     //jendela hareupna tapi anu garis beureum anu ka tilu
     glPushMatrix();
-    glTranslatef(128.5, 16.5, 89.5);
+    glTranslatef(128.5, 16.5, 89.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 0.0, 0.0);
     glScalef(12.0, 2.0, 1.0);
@@ -778,7 +782,7 @@ void telepon(){
     
     //jendela hareupna tapi anu garis bodas anu ka hiji
     glPushMatrix();
-    glTranslatef(125.5, 11.5, 90.5);
+    glTranslatef(125.5, 11.5, 90.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 0.0, 0.0);
     glScalef(1.0, 16.0, 1.0);
@@ -787,7 +791,7 @@ void telepon(){
     
     //jendela hareupna tapi anu garis bodas anu ka dua
     glPushMatrix();
-    glTranslatef(130.5, 11.5, 90.5);
+    glTranslatef(130.5, 11.5, 90.5);// We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 0.0, 0.0);
     glScalef(1.0, 16.0, 1.0);
@@ -798,56 +802,56 @@ void telepon(){
 void jalan()
 {
     glPushMatrix();
-    glTranslatef(195.0, -2.5, 170.0);
+    glTranslatef(195.0, -2.5, 170.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(5.0, 5.0, 50.5);
     glutSolidCube(0.5f); //kubus solid
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(195.0, -2.5, 120.0);
+    glTranslatef(195.0, -2.5, 120.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(5.0, 5.0, 50.5);
     glutSolidCube(0.5f); //kubus solid
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(195.0, -2.5, 70.0);
+    glTranslatef(195.0, -2.5, 70.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(5.0, 5.0, 50.5);
     glutSolidCube(0.5f); //kubus solid
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(195.0, -2.5, 20.0);
+    glTranslatef(195.0, -2.5, 20.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(5.0, 5.0, 50.5);
     glutSolidCube(0.5f); //kubus solid
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(195.0, -2.5, -30.0);
+    glTranslatef(195.0, -2.5, -30.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(5.0, 5.0, 50.5);
     glutSolidCube(0.5f); //kubus solid
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(195.0, -2.5, -80.0);
+    glTranslatef(195.0, -2.5, -80.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(5.0, 5.0, 50.5);
     glutSolidCube(0.5f); //kubus solid
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(195.0, -2.5, -130.0);
+    glTranslatef(195.0, -2.5, -130.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(5.0, 5.0, 50.5);
     glutSolidCube(0.5f); //kubus solid
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(195.0, -2.5, -180.0);
+    glTranslatef(195.0, -2.5, -180.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glColor3f(0.9f, 0.9f, 0.9f);
     glScalef(5.0, 5.0, 50.5);
     glutSolidCube(0.5f); //kubus solid
@@ -858,7 +862,7 @@ void bus(){
     //bus bawah
   
     glPushMatrix();
-    glTranslatef(178.5, 10.0, 68.5);
+    glTranslatef(178.5, 10.0, 68.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 0.0, 0.0);
     glScalef(12.0, 15.0, 55.1);
@@ -867,7 +871,7 @@ void bus(){
 
     //bus atas
     glPushMatrix();
-    glTranslatef(178.5, 23.0, 68.5);
+    glTranslatef(178.5, 23.0, 68.5); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 0.0, 0.0);
     glScalef(12.0, 8.0, 55.1);
@@ -876,7 +880,7 @@ void bus(){
     
     //sekat
     glPushMatrix();
-    glTranslatef(178.5, 18, 68.5);
+    glTranslatef(178.5, 18, 68.5);// We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(0.0, 0.0, 0.0);
     glScalef(12.0, 1.0, 55.1);
@@ -886,7 +890,7 @@ void bus(){
     //roda    depan kiri     
     glPushMatrix();
     glColor3f(0.9f, 0.9f, 0.9f);
-    glTranslatef(161.0, 18.5, 112.0);
+    glTranslatef(161.0, 18.5, 112.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(0.0,0.0,1.0,1.0);
     glRotatef(90.0,0.0,1.0,1.0);
     glColor3f(0.0f, 0.0f, 0.f);
@@ -897,7 +901,7 @@ void bus(){
     //roda belakang kiri
     glPushMatrix();
     glColor3f(0.9f, 0.9f, 0.9f);
-    glTranslatef(161.0, 18.5, 75);
+    glTranslatef(161.0, 18.5, 75); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(0.0,0.0,1.0,1.0);
     glRotatef(90.0,0.0,1.0,1.0);
     glColor3f(0.0f, 0.0f, 0.f);
@@ -906,7 +910,7 @@ void bus(){
 
     //kaca depan bawah
     glPushMatrix();
-    glTranslatef(178.9, 12.8, 99);
+    glTranslatef(178.9, 12.8, 99); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 1.0, 1.0);
     glScalef(12.0, 8.0, 1.0);
@@ -916,7 +920,7 @@ void bus(){
 
     //kaca depan atas
     glPushMatrix();
-    glTranslatef(178.9, 24.8, 99);
+    glTranslatef(178.9, 24.8, 99); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 1.0, 1.0);
     glScalef(12.0, 6.0, 1.0);
@@ -925,7 +929,7 @@ void bus(){
     
     //kaca belakang
     glPushMatrix();
-    glTranslatef(177.9, 11.8, 40.0);
+    glTranslatef(177.9, 11.8, 40.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(3,0,1,0);
     glColor3f(1.0, 1.0, 1.0);
     glScalef(14.0, 8.0, 1.0);
@@ -938,7 +942,7 @@ void pohon()
      //pohon deket jalan
 	glPushMatrix();
     glColor3f(0.4f, 0.2f, 0.0f);
-    glTranslatef(235.0, -2.5, 170.0);
+    glTranslatef(235.0, -2.5, 170.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(270, 1, 0, 0);
 	glScaled(4,4,35);
 	glutSolidCone(0.5,1,5,3); //kerucut
@@ -946,14 +950,14 @@ void pohon()
     
     glPushMatrix();
     glColor3f(0.5f, 0.7f, 0.1f);
-    glTranslatef(235.0, 25.5, 170.0);
+    glTranslatef(235.0, 25.5, 170.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(20,20,20);
 	glutSolidSphere(0.5,8,5); //bola
 	glPopMatrix();
 	
 	glPushMatrix();
     glColor3f(0.4f, 0.2f, 0.0f);
-    glTranslatef(235.0, -2.5, 130.0);
+    glTranslatef(235.0, -2.5, 130.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(270, 1, 0, 0);
 	glScaled(4,4,35);
 	glutSolidCone(0.5,1,5,3); //kerucut
@@ -961,14 +965,14 @@ void pohon()
     
     glPushMatrix();
     glColor3f(0.5f, 0.7f, 0.1f);
-    glTranslatef(235.0, 25.5, 130.0);
+    glTranslatef(235.0, 25.5, 130.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(20,20,20);
 	glutSolidSphere(0.5,8,5); //bola
 	glPopMatrix();
 	
 	glPushMatrix();
     glColor3f(0.4f, 0.2f, 0.0f);
-    glTranslatef(235.0, -2.5, 90.0);
+    glTranslatef(235.0, -2.5, 90.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(270, 1, 0, 0);
 	glScaled(4,4,35);
 	glutSolidCone(0.5,1,5,3); //kerucut
@@ -976,14 +980,14 @@ void pohon()
     
     glPushMatrix();
     glColor3f(0.5f, 0.7f, 0.1f);
-    glTranslatef(235.0, 25.5, 90.0);
+    glTranslatef(235.0, 25.5, 90.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(20,20,20);
 	glutSolidSphere(0.5,8,5); //bola
 	glPopMatrix();
 	
 	glPushMatrix();
     glColor3f(0.4f, 0.2f, 0.0f);
-    glTranslatef(235.0, -2.5, 50.0);
+    glTranslatef(235.0, -2.5, 50.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(270, 1, 0, 0);
 	glScaled(4,4,35);
 	glutSolidCone(0.5,1,5,3); //kerucut
@@ -991,14 +995,14 @@ void pohon()
     
     glPushMatrix();
     glColor3f(0.5f, 0.7f, 0.1f);
-    glTranslatef(235.0, 25.5, 50.0);
+    glTranslatef(235.0, 25.5, 50.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(20,20,20);
 	glutSolidSphere(0.5,8,5); //bola
 	glPopMatrix();
 	
 	glPushMatrix();
     glColor3f(0.4f, 0.2f, 0.0f);
-    glTranslatef(235.0, -2.5, 10.0);
+    glTranslatef(235.0, -2.5, 10.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(270, 1, 0, 0);
 	glScaled(4,4,35);
 	glutSolidCone(0.5,1,5,3); //kerucut
@@ -1006,14 +1010,14 @@ void pohon()
     
     glPushMatrix();
     glColor3f(0.5f, 0.7f, 0.1f);
-    glTranslatef(235.0, 25.5, 10.0);
+    glTranslatef(235.0, 25.5, 10.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(20,20,20);
 	glutSolidSphere(0.5,8,5); //bola
 	glPopMatrix();
 	
 	glPushMatrix();
     glColor3f(0.4f, 0.2f, 0.0f);
-    glTranslatef(235.0, -2.5, -30.0);
+    glTranslatef(235.0, -2.5, -30.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(270, 1, 0, 0);
 	glScaled(4,4,35);
 	glutSolidCone(0.5,1,5,3); //kerucut
@@ -1021,14 +1025,14 @@ void pohon()
     
     glPushMatrix();
     glColor3f(0.5f, 0.7f, 0.1f);
-    glTranslatef(235.0, 25.5, -30.0);
+    glTranslatef(235.0, 25.5, -30.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(20,20,20);
 	glutSolidSphere(0.5,8,5); //kerucut
 	glPopMatrix();
 	
 	glPushMatrix();
     glColor3f(0.4f, 0.2f, 0.0f);
-    glTranslatef(235.0, -2.5, -70.0);
+    glTranslatef(235.0, -2.5, -70.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(270, 1, 0, 0);
 	glScaled(4,4,35);
 	glutSolidCone(0.5,1,5,3); //kerucut
@@ -1036,14 +1040,14 @@ void pohon()
     
     glPushMatrix();
     glColor3f(0.5f, 0.7f, 0.1f);
-    glTranslatef(235.0, 25.5, -70.0);
+    glTranslatef(235.0, 25.5, -70.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(20,20,20);
 	glutSolidSphere(0.5,8,5); //bola
 	glPopMatrix();
 	
 	glPushMatrix();
     glColor3f(0.4f, 0.2f, 0.0f);
-    glTranslatef(235.0, -2.5, -110.0);
+    glTranslatef(235.0, -2.5, -110.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(270, 1, 0, 0);
 	glScaled(4,4,35);
 	glutSolidCone(0.5,1,5,3); //kerucut
@@ -1051,14 +1055,14 @@ void pohon()
     
     glPushMatrix();
     glColor3f(0.5f, 0.7f, 0.1f);
-    glTranslatef(235.0, 25.5, -110.0);
+    glTranslatef(235.0, 25.5, -110.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(20,20,20);
 	glutSolidSphere(0.5,8,5); //bola
 	glPopMatrix();
 	
 	glPushMatrix();
     glColor3f(0.4f, 0.2f, 0.0f);
-    glTranslatef(235.0, -2.5, -150.0);
+    glTranslatef(235.0, -2.5, -150.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(270, 1, 0, 0);
 	glScaled(4,4,35);
 	glutSolidCone(0.5,1,5,3); //kerucut
@@ -1066,7 +1070,7 @@ void pohon()
     
     glPushMatrix();
     glColor3f(0.5f, 0.7f, 0.1f);
-    glTranslatef(235.0, 25.5, -150.0);
+    glTranslatef(235.0, 25.5, -150.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(20,20,20);
 	glutSolidSphere(0.5,8,5); //bola
 	glPopMatrix();	
@@ -1076,7 +1080,7 @@ void lampujalan(int z)
 {
 	glPushMatrix();
     glColor3f(1.1f, 1.2f, 0.0f);
-    glTranslatef(161.0, -12.5, -150.0+(z*80));
+    glTranslatef(161.0, -12.5, -150.0+(z*80)); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(270, 1, 0, 0);
 	glScaled(4,4,35);
 	glutSolidCone(0.5,1,5,3);
@@ -1084,14 +1088,14 @@ void lampujalan(int z)
 
     glPushMatrix();
     glColor3f(1.0f, 1.0f, 1.0f);
-    glTranslatef(161.0, 19.5, -150.0+(z*80));
+    glTranslatef(161.0, 19.5, -150.0+(z*80)); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(20,20,20);
 	glutSolidSphere(0.12,80,50); //bola
 	glPopMatrix();	
      
     glPushMatrix();
     glColor3f(0.9f, 0.9f, 0.9f);
-    glTranslatef(161.0, 18.5, -150.0+(z*80));
+    glTranslatef(161.0, 18.5, -150.0+(z*80)); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glRotatef(45.0,0.0,1.0,0.0);
     glRotatef(-90.0,1.0,0.0,0.0);
     glColor3f(0.9f, 0.9f, 0.9f);
@@ -1099,7 +1103,7 @@ void lampujalan(int z)
     glPopMatrix();
 	    
     glPushMatrix();
-    glTranslatef(161.0, -2.5, -150.0+(z*80));
+    glTranslatef(161.0, -2.5, -150.0+(z*80)); // We move the object forward (the model matrix is multiplied by the translation matrix)
     glRotatef(45.0,0.0,1.0,0.0);
     glRotatef(-90.0,1.0,0.0,0.0);
     glColor3f(0.9f, 0.9f, 0.9f);
@@ -1110,19 +1114,20 @@ void batu()
 {
     glPushMatrix();
     glColor3f(0.5f, 0.5f, 0.5f);
-    glTranslatef(125.0, -4.5, 100.0);
+    glTranslatef(125.0, -4.5, 100.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(10,10,10);
 	glutSolidSphere(0.5,8,5); //bola
 	glPopMatrix();
 	
 	glPushMatrix();
     glColor3f(0.5f, 0.5f, 0.5f);
-    glTranslatef(135.0, -2.5, 105.0);
+    glTranslatef(135.0, -2.5, 105.0); // We move the object forward (the model matrix is multiplied by the translation matrix)
 	glScaled(5,5,5);
 	glutSolidSphere(0.5,8,5); //bola
 	glPopMatrix();
 }
 
+// fungsi yang digunakan untuk menampilkan setiap objek yang kita buat
 void display(void) {
 	glClearStencil(0); //clear the stencil buffer
 	glClearDepth(1.0f);
@@ -1179,15 +1184,16 @@ glPopMatrix();
 
 }
 
+//fungsi yang digunakan sebagai tempat menggambar
 void init(void) {
-	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST); // Enables Depth Testing
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	glDepthFunc(GL_LESS);
+	glDepthFunc(GL_LESS); // The Type Of Depth Testing To Do
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_COLOR_MATERIAL);
-	glDepthFunc(GL_LEQUAL);
-	glShadeModel(GL_SMOOTH);
+	glDepthFunc(GL_LEQUAL); // The Type Of Depth Testing To Do
+	glShadeModel(GL_SMOOTH); // Enable Smooth Shading
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 	glEnable(GL_CULL_FACE);
 
@@ -1222,6 +1228,7 @@ static void kibor(int key, int x, int y) {
 		break;
 
 	case GLUT_KEY_F1: {
+        // Setup The Ambient Light
 		glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
 		glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
@@ -1230,6 +1237,7 @@ static void kibor(int key, int x, int y) {
 		;
 		break;
 	case GLUT_KEY_F2: {
+        // Setup The Ambient Light
 		glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient2);
 		glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse2);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
@@ -1313,26 +1321,33 @@ void keyboard(unsigned char key, int x, int y) {
 }
 
 void reshape(int w, int h) {
-	glViewport(0, 0, (GLsizei) w, (GLsizei) h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(60, (GLfloat) w / (GLfloat) h, 0.1, 1000.0);
-	glMatrixMode(GL_MODELVIEW);
+    // Viewport transformation
+	glViewport(0, 0, (GLsizei) w, (GLsizei) h); // Reset The Current Viewport
+	glMatrixMode(GL_PROJECTION); // Select The Projection Matrix
+	// We initialize the projection matrix as identity
+	glLoadIdentity(); // Reset The Modelview Matrix
+	// We define the "viewing volume"
+	gluPerspective(60, (GLfloat) w / (GLfloat) h, 0.1, 1000.0); // Calculate The Aspect Ratio Of The Window
+	glMatrixMode(GL_MODELVIEW); // Select The Modelview Matrix
 }
 
 int main(int argc, char **argv) {
-	glutInit(&argc, argv);
+	// Konfigurasi dan Menampilkan Window
+    glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_STENCIL | GLUT_DEPTH); //add a stencil buffer to the window
 	glutInitWindowSize(800, 600);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("Big Ben");
+	
+	// Fungsi untuk melakukan initialisasi
 	init();
     
     glutTimerFunc(33, TimerFunction, 1);
+    
+    // Registrasi Callback Function
 	glutDisplayFunc(display);
 	glutIdleFunc(display);
 	glutReshapeFunc(reshape);
-
 	glutKeyboardFunc(keyboard);
 
     glutMouseFunc(mouse);
@@ -1342,7 +1357,8 @@ int main(int argc, char **argv) {
 	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 	glMaterialfv(GL_FRONT, GL_SHININESS, high_shininess);
 	glColorMaterial(GL_FRONT, GL_DIFFUSE);
-
+    
+    // Event Processing Loop
 	glutMainLoop();
 	return 0;
 }
